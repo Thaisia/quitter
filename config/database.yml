@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: '127.0.0.1'
+  port: 5431
+  user: 'postgres'
+  password: 'mysecretpassword'
+
+development:
+  <<: *default
+  database: quitter_development
+
+test:
+  <<: *default
+  database: quitter_test
+
+production:
+  <<: *default
+  database: quitter_production
+  username: quitter
+  password: <%= ENV['QUITTER_DATABASE_PASSWORD'] %>
